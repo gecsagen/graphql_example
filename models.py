@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer, String
 from database import Base
-
+from typing import Any
 
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
-    email = Column(String, unique=True, index=True)
-    age = Column(Integer)
+    id: Any = Column(Integer, primary_key=True, index=True)
+    name: Any = Column(String)
+    email: Any = Column(String, unique=True, index=True)
+    age: Any = Column(Integer)

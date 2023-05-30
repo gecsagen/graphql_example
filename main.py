@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from strawberry.asgi import GraphQL
 import uvicorn
-from schema import schema
+from resolvers import schema
 
 app = FastAPI()
 app.add_route("/graphql", GraphQL(schema))
