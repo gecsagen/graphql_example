@@ -72,9 +72,11 @@ class Query:
         return None
 
     @strawberry.field
-    def get_users(self) -> List[UserType]:
+    def get_users(
+        self, age_min: Optional[int] = None, age_max: Optional[int] = None
+    ) -> List[UserType]:
         db = next(get_db())
-        users = get_all_users(db)
+        users = get_all_users(db, age_min=age_min, age_max=age_max)
         return [
             UserType(id=str(user.id), name=user.name, email=user.email, age=user.age)
             for user in users

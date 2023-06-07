@@ -8,8 +8,14 @@ def get_user_by_id(db: Session, user_id: int) -> Optional[User]:
     return get_user(db, user_id)
 
 
-def get_all_users(db: Session) -> List[User]:
-    return get_users(db)
+def get_all_users(db: Session, age_min: int = None, age_max: int = None) -> List[User]:
+    users = get_users(db)
+    if age_min is not None:
+        users = [user for user in users if user.age >= age_min]
+    if age_max is not None:
+        users = [user for user in users if user.age <= age_max]
+    return users
+
 
 
 def create_new_user(db: Session, name: str, email: str, age: int) -> User:
